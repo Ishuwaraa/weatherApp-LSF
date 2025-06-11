@@ -1,11 +1,14 @@
-
+import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+import Home from './pages/Home';
 
 function App() {
 
   return (
-    <>
-      <div className=" text-2xl bg-red-500">Hello World!</div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
