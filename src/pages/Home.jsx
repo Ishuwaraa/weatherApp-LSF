@@ -39,6 +39,10 @@ const Home = () => {
             console.log(searchQuery);
             console.log('search: ', data);
             setLocationMatches(data);
+
+            if (data?.length === 0) {
+                alert('No results found!')
+            }
         } catch (err) {
             console.log(err.message);
         } finally {
