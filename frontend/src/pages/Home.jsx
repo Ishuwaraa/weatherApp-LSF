@@ -16,8 +16,8 @@ const Home = () => {
     const fetchData = async () => {
         try {
             setLoading(true);
-            const colomboWeather = await axiosInstance.get(`current.json?key=${import.meta.env.VITE_WEATHER_KEY}&q=Colombo`);
-            const forecastWeather = await axiosInstance.get(`forecast.json?key=${import.meta.env.VITE_WEATHER_KEY}&q=Colombo&days=7`);
+            const colomboWeather = await axiosInstance.get('weather/colombo?searchById=false');
+            const forecastWeather = await axiosInstance.get('weather/forecast/colombo?searchById=false');
             console.log(colomboWeather?.data);
             console.log('forecast: ', forecastWeather?.data?.forecast?.forecastday);
             setCurrentWeather(colomboWeather?.data?.current);
@@ -35,7 +35,7 @@ const Home = () => {
 
         try {
             setSearchLoading(true);
-            const { data } = await axiosInstance.get(`search.json?key=${import.meta.env.VITE_WEATHER_KEY}&q=${searchQuery}`);
+            const { data } = await axiosInstance.get(`weather/search/${searchQuery}`);
             console.log(searchQuery);
             console.log('search: ', data);
             setLocationMatches(data);
@@ -53,8 +53,8 @@ const Home = () => {
     const fetchSearchedWeather = async (location) => {
         try {
             setLoading(true);
-            const { data } = await axiosInstance.get(`current.json?key=${import.meta.env.VITE_WEATHER_KEY}&q=id:${location?.id}`);
-            const forecastWeather = await axiosInstance.get(`forecast.json?key=${import.meta.env.VITE_WEATHER_KEY}&q=id:${location?.id}&days=7`);
+            const { data } = await axiosInstance.get(`weather/${location?.id}?searchById=true`);
+            const forecastWeather = await axiosInstance.get(`weather/forecast/${location?.id}?searchById=true`);
             console.log('query', data);
             console.log('search forecast: ', forecastWeather?.data);
             setCurrentWeather(data?.current);

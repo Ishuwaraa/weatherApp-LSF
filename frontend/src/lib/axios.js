@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
-    baseURL: 'http://api.weatherapi.com/v1/',
+    baseURL: 'http://localhost:4000/api/',
 });
