@@ -6,8 +6,12 @@ const weatherRoutes = require('./routes/weatherRoute');
 
 const app = express();
 
+const allowedOrigins = process.env.ENVIRONMENT === 'dev' 
+  ? ['http://localhost:3000'] 
+  : ['https://weather-app-lsf.vercel.app'];
+
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: allowedOrigins,
     methods: ["GET", "OPTIONS"],
     credentials: true,
 }));
