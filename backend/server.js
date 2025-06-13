@@ -22,4 +22,7 @@ app.listen(process.env.PORT, () => {
     console.log('Error starting server:', e.message);
 });
 
+app.get('/', (req, res) => {
+    res.status(200).json("Welcome to the Weather API")
+})
 app.use('/api/weather', weatherRoutes);
